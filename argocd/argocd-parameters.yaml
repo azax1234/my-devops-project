@@ -1,0 +1,12 @@
+project: default
+source:
+  repoURL: https://github.com/azax1234/azax-end2end-devops-project.git
+  path: azax-end2end-devops-project/chart
+  targetRevision: HEAD
+  helm:
+    valueFiles:
+      - values-dev.yaml
+destination:
+  server: https://kubernetes.default.svc
+syncPolicy:
+  automated: {}

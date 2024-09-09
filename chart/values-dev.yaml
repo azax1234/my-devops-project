@@ -1,0 +1,16 @@
+# Basic Settings
+appName: explore-california
+namespace: dev
+replicas: 2
+
+# Image Settings
+image:
+  repository: azax1234/explore-california
+  tag: 4
+  pullPolicy: IfNotPresent
+
+# Service Settings
+service:
+  name: explorecalifornia-svcs-dev
+  type: ClusterIP
+  port: 80

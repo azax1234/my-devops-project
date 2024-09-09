@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: {{ .Values.appName }}
+  name:  {{ .Values.service.name }}
+  namespace: {{ .Values.namespace }}
+spec:
+  ports:
+  - port: {{ .Values.service.port }}
+    targetPort: 80
+  type: {{ .Values.service.type }} # Change to ClusterIP in case using an Ingress
+  selector: #service mapping to a pod. Service downt map to a deployment. A pod maps to a  deployment
+    app:  {{ .Values.appName }}
+  sessionAffinity: None #sticky user sessionsß
