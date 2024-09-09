@@ -1,4 +1,10 @@
 ### Notes 
+Right now testing with Explore California website image that I have in my docker hub.
+
+Intial Helm charts are for Explore California app.
+
+Netflix-clone project will be done separately with its own charts and Argocd will deply this app as well into the same GKE cluster.
+
 ***(To be arranged)***
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 

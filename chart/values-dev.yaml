@@ -1,7 +1,7 @@
 # Basic Settings
 appName: explore-california
 namespace: dev
-replicas: 2
+replicas: 1
 
 # Image Settings
 image:
