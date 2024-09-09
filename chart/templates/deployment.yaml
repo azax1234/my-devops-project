@@ -4,7 +4,7 @@ metadata:
   name:  {{ .Values.appName }}
   namespace: {{ .Values.namespace }}
   labels:
-    app: explore-california
+    app: {{ .Values.appName }}
 spec:
   replicas:  {{ .Values.replicas }}
   selector:
