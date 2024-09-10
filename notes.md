@@ -10,11 +10,30 @@ Netflix-clone project will be done separately with its own charts and Argocd wil
 1. Getting to many redirects error when  trying to se an ingress for argo cd without a host.
 
 2. How to have multiple ingresses for differnt apps with same ingress controller. Do we have to separate them by sing host in spec or anything else. Using seprate controllers is an option?
-.
+
 
 ***Github Actions***
 
 1. How to make the workflow ignore ccertain commits push. Dont want it to build everytime.
+
+We can either specify the paths like below
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/**'
+      - '!chart/**' # Do not trigger build even if any changes in these paths
+      - '!.github/**' # ** is for multiple strings and paths while * can replace only one string
+
+and also add a conditional step in the job based on commit message to ignore even if changes are on desired path 
+
+    - name: Check commit message #skip build id it has 'skip ci' in commit message
+      run: |
+        if [[ "${{ github.event.head_commit.message }}" == *"skip ci"* ]]; then
+          echo "Skipping CI due to commit message"
+          exit 78
+        fi
 
 ***(To be arranged)***
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
