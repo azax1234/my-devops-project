@@ -5,6 +5,17 @@ Intial Helm charts are for Explore California app.
 
 Netflix-clone project will be done separately with its own charts and Argocd will deply this app as well into the same GKE cluster.
 
+***ISSUES / OPEN QESTIONS / TO BE DONE***
+
+1. Getting to many redirects error when  trying to se an ingress for argo cd without a host.
+
+2. How to have multiple ingresses for differnt apps with same ingress controller. Do we have to separate them by sing host in spec or anything else. Using seprate controllers is an option?
+.
+
+***Github Actions***
+
+1. How to make the workflow ignore ccertain commits push. Dont want it to build everytime.
+
 ***(To be arranged)***
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 
@@ -55,6 +66,7 @@ Structure:
 Use the format: <type>(<optional scope>): <description>
 Optionally add a body and footer separated by blank lines
 Types:
+feat!: Major release
 feat: New feature
 fix: Bug fix
 docs: Documentation changes
@@ -102,12 +114,4 @@ If you want to stick with Conventional Commits, option 1 is best.
 For a quick fix with the current action, use option 2.
 For more flexibility without changing commit styles, consider options 3 or 4.
 Remember to adjust subsequent steps in your workflow to use the correct output variable based on the method you choose.
-
-***ISSUES / OPEN QESTIONS / TO BE DONE***
-
-1. Getting to many redirects error when  trying to se an ingress for argo cd without a host.
-
-2. How to have multiple ingresses for differnt apps with same ingress controller. Do we have to separate them by sing host in spec or anything else. Using seprate controllers is an option?
-
-3. learn about how to maintain RLEASES in Helm charts. There seems to be a  RELEASE variable that we can maintain.
 
