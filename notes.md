@@ -50,6 +50,21 @@ Let's go through these options:
 Use Conventional Commits:
 Ensure your commit messages follow the format: type(scope): description
 For example: feat: add new feature or fix: resolve bug in login
+****Conventional git commit format****
+Structure:
+Use the format: <type>(<optional scope>): <description>
+Optionally add a body and footer separated by blank lines
+Types:
+feat: New feature
+fix: Bug fix
+docs: Documentation changes
+style: Code style changes (formatting, missing semicolons, etc)
+refactor: Code refactoring
+perf: Performance improvements
+test: Adding or updating tests
+build: Build system or external dependency changes
+ci: CI configuration changes
+
 Adjust the semver action:
 You can modify the action to treat all commits as patch bumps:
 text
