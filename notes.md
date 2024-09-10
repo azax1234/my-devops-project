@@ -38,6 +38,56 @@ text
 
 The default-version parameter tells the action what version to use if no tags are found.
 
+***[INVALID] Skipping commit*** as it doesn't follow conventional commit format.
+Error: No commit resulted in a version bump since last release!
+
+Answer
+I understand the issue you're facing. This error occurs when the ietf-tools/semver-action@v1 action can't find any commits that follow the Conventional Commits format since the last release. To address this, we have a few options:
+Ensure your commits follow Conventional Commits format
+Adjust the action to accept non-conventional commits
+Use a different action that's more flexible
+Let's go through these options:
+Use Conventional Commits:
+Ensure your commit messages follow the format: type(scope): description
+For example: feat: add new feature or fix: resolve bug in login
+Adjust the semver action:
+You can modify the action to treat all commits as patch bumps:
+text
+- name: Calculate SemVer
+  id: semver
+  uses: ietf-tools/semver-action@v1
+  with:
+    token: ${{ secrets.GITHUB_TOKEN }}
+    branch: main
+    patchAll: true
+
+Use a different action:
+An alternative is to use anothrNick/github-tag-action@1.67.0, which is more flexible:
+text
+- name: Bump version and push tag
+  id: tag_version
+  uses: anothrNick/github-tag-action@1.67.0
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    DEFAULT_BUMP: patch
+    WITH_V: true
+
+Implement custom versioning logic:
+If you need more control, you can implement your own versioning:
+text
+- name: Calculate SemVer
+  id: semver
+  run: |
+    LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+    NEXT_VERSION=$(echo $LATEST_TAG | awk -F. '{$NF = $NF + 1;} 1' | sed 's/ /./g')
+    echo "next=$NEXT_VERSION" >> $GITHUB_OUTPUT
+
+Choose the option that best fits your project's needs:
+If you want to stick with Conventional Commits, option 1 is best.
+For a quick fix with the current action, use option 2.
+For more flexibility without changing commit styles, consider options 3 or 4.
+Remember to adjust subsequent steps in your workflow to use the correct output variable based on the method you choose.
+
 ***ISSUES / OPEN QESTIONS / TO BE DONE***
 
 1. Getting to many redirects error when  trying to se an ingress for argo cd without a host.
