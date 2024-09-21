@@ -7,12 +7,26 @@ Netflix-clone project will be done separately with its own charts and Argocd wil
 
 ***ISSUES / OPEN QESTIONS / TO BE DONE***
 
+**Kubernetes**
 1. Getting to many redirects error when  trying to se an ingress for argo cd without a host.
 
 2. How to have multiple ingresses for differnt apps with same ingress controller. Do we have to separate them by sing host in spec or anything else. Using seprate controllers is an option?
 
+***Github actions***
+3. Add a quality gate based on test results before deploy.
 
-***Github Actions***
+4. How to rn specific steps only from the job.
+
+5. How to introduce dependancy on the workflow steps.
+
+***Sonar cloud***
+host url : https://sonarcloud.io
+token: f75ed9edb7450ec4d323f6e7f8eec11f90dc59ce
+project-key: netflix-project-key
+organization-key: my-org-azax
+
+***Github Actions notes***
+
 
 1. How to make the workflow ignore ccertain commits push. Dont want it to build everytime.
 
